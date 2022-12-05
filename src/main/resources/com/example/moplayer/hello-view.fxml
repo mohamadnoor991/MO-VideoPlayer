@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="parent" alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moplayer.HelloController">
+    <children>
+        <MediaView fx:id="myMediaView" smooth="false" VBox.vgrow="ALWAYS" />
+        <HBox fx:id="timeHBox" spacing="10.0" style="-fx-background-color: SKYBLUE;">
+            <children>
+                <Label fx:id="currentTimeLabel" text="Time">
+                    <opaqueInsets>
+                        <Insets right="10.0" />
+                    </opaqueInsets>
+                </Label>
+                <Label fx:id="totalTime" text="Label" />
+                <Slider fx:id="timeSlider" prefHeight="24.0" prefWidth="366.0" showTickMarks="true" style="-fx-background-color: CADETBLUE;" HBox.hgrow="ALWAYS">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></Slider>
+            </children>
+            <padding>
+                <Insets left="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <HBox fx:id="voiceHBox" alignment="CENTER" spacing="10.0">
+            <children>
+                <Label fx:id="voiceIconLabel" />
+                <Slider fx:id="voiceSlider" max="1.0" prefHeight="14.0" prefWidth="202.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Slider>
+                <Button mnemonicParsing="false" onAction="#lightEffect" text="Lighting" />
+            </children>
+        </HBox>
+        <HBox fx:id="buttonHBox" alignment="BOTTOM_CENTER" spacing="12.0">
+            <children>
+                <Button fx:id="openVideo" mnemonicParsing="false" onAction="#openV" text="Open Video" />
+                <Button fx:id="play" mnemonicParsing="false" onAction="#play" text="Play" />
+                <Button fx:id="puse" mnemonicParsing="false" onAction="#pause" text="Pause" />
+                <Button fx:id="stop" mnemonicParsing="false" onAction="#stop" text="Stop" />
+                <Button fx:id="mute" mnemonicParsing="false" onAction="#mute" text="Mute" />
+                <Button mnemonicParsing="false" onAction="#takeShoot" text="Photo" />
+                <Button fx:id="forWord" mnemonicParsing="false" onAction="#forWord" text="&gt;&gt;" />
+                <Button fx:id="backWord" mnemonicParsing="false" onAction="#backWord" text="&lt;&lt;" />
+                <Button fx:id="speed" mnemonicParsing="false" onAction="#speed" text="X1" />
+                <Label fx:id="fullScrenn" text="FullScreen">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="5.0" />
+                    </HBox.margin>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets bottom="10.0" left="10.0" top="10.0" />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="10.0" left="10.0" top="10.0" />
+            </padding>
+        </HBox>
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</VBox>
