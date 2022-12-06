@@ -85,7 +85,7 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // initialize all the node you nned such as the images of the button with the properties
+        // initialize all the node you need such as the images of the button with the properties
 //            Button.setGraphic(ImageView); in this way you can add picture to your button.
         Image voiceIcon=new Image("speaker.png");
         iVolume=new ImageView(voiceIcon);
@@ -93,26 +93,11 @@ public class HelloController implements Initializable {
         iVolume.setFitWidth(25);
         voiceIconLabel.setGraphic(iVolume);
 
-//        openV(e);
-//        file=new File("C:\\Users\\moham\\Downloads\\r.mp4");
-//        file=new File("basic.mkv");
-//        media=new Media(file.toURI().toString());
-//        mediaPlayer=new MediaPlayer(media);
-//        myMediaView.setMediaPlayer(mediaPlayer);//to view the video
-
-
-
-
         //bind the both prop volume of the media player and the value of the voiceSlider.
 //            mediaPlayer.volumeProperty().bindBidirectional(voiceSlider.valueProperty());
 
-        while (mediaPlayer!=null) {
-            bindCurrentTime();
-            voiceBinding();
-        }
 
 
-        //Work??
         //Change the dimension of the  video when we change the size of window then the scene will change
         parent.sceneProperty().addListener(new ChangeListener<Scene>() {
             @Override
@@ -157,24 +142,7 @@ public class HelloController implements Initializable {
                 });
             }
         });
-        if(mediaPlayer!=null) {
-            //--------------------
-        /*
-        Deal with time slider of the video
-         */
-            //Add a listener to the total duration property of the mediaPlayer to handle any change.
-            mediaPlayer.totalDurationProperty().addListener(new ChangeListener<Duration>() {
-                @Override
-                public void changed(ObservableValue<? extends Duration> observableValue, Duration oldDuration, Duration newDuration) {
-                    //set the max value of the time slider
-                    timeSlider.setMax(newDuration.toSeconds());
-                    // newDuration represent the duration of the new video, whereas the function getTime(Duration) will calculate the full duration in second.
-                    totalTime.setText(getTime(newDuration));
 
-
-                }
-            });
-        }//end if
 
 
 
@@ -209,25 +177,46 @@ public class HelloController implements Initializable {
             }
         });
 
+
+
+    }//end of initialize method
+
+    public void toolsDeal(){
+
+        //--------------------
+        /*
+        Deal with time slider of the video
+         */
+        //Add a listener to the total duration property of the mediaPlayer to handle any change.
+        mediaPlayer.totalDurationProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observableValue, Duration oldDuration, Duration newDuration) {
+                //set the max value of the time slider
+                timeSlider.setMax(newDuration.toSeconds());
+                // newDuration represent the duration of the new video, whereas the function getTime(Duration) will calculate the full duration in second.
+                totalTime.setText(getTime(newDuration));
+            }
+        });
+
+
         /*
         Add listener to the mediaplayer for the currentTime property for “check if the value of the time slider is changing,
          if not we should set the timer to be the new time in seconds”
             +++ we are mentoring the current time value of the video and build our logic in this listener on it
             +++ Whereas if the timeSlider value is not changing we will assign the current time value of the video to the Time slider
          */
-        if(mediaPlayer!=null) {
-            mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-                @Override
-                public void changed(ObservableValue<? extends Duration> observableValue, Duration oldTime, Duration newTime) {
-                    if (!timeSlider.isValueChanging()) {
-                        timeSlider.setValue(newTime.toSeconds());
-                    }
-//                labelMatchEndVideo(currentTimeLabel.getText(),totalTime.getText()); //not use this idea for our work now
-                }
-            });
-        }
 
-    }//end of initialize method
+        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observableValue, Duration oldTime, Duration newTime) {
+                if (!timeSlider.isValueChanging()) {
+                    timeSlider.setValue(newTime.toSeconds());
+                }
+//                labelMatchEndVideo(currentTimeLabel.getText(),totalTime.getText()); //not use this idea for our work now
+            }
+        });
+
+    }//end of toolsDeal function
 
     /***
      * Bind the current time of the video to current time Label
@@ -328,11 +317,9 @@ public class HelloController implements Initializable {
         mediaPlayer=new MediaPlayer(media);
         myMediaView.setMediaPlayer(mediaPlayer);//to view the video
         mediaPlayer.volumeProperty().bindBidirectional(voiceSlider.valueProperty());//move here to work when choice a video
-
-//        Image mm=new Image(file.toURI().toString());
-//        myImgView.setImage(mm);
-//        myMediaView.setFitHeight(400);
-//        myMediaView.setFitWidth(500);
+        bindCurrentTime();
+        voiceBinding();
+        toolsDeal();
 
     }
     public void play(){
@@ -423,23 +410,6 @@ public class HelloController implements Initializable {
             lightState=false;
             myMediaView.setEffect(null);}
     }
-
-
-//    public void convert(){
-//        Media conertV= myMediaView.getMediaPlayer().getMedia();
-//        FileChooser fileChooser=new FileChooser();
-//        FileChooser.ExtensionFilter ex=new FileChooser.ExtensionFilter("mp4-video","*.mp4"); //Add as you need
-//        FileChooser.ExtensionFilter ex1=new FileChooser.ExtensionFilter("3jp-video","*.3jp"); //Add as you need
-//        FileChooser.ExtensionFilter ex2=new FileChooser.ExtensionFilter("mkv-video","*.mkv"); //Add as you need
-//        fileChooser.setTitle("Choice your video type");
-//        fileChooser.getExtensionFilters().addAll(ex,ex1,ex2);
-//        fileChooser.setInitialDirectory(new File("D:/"));
-//
-//        File imageFile= fileChooser.showSaveDialog(stage);
-//
-//
-//
-//    }
 
 
 

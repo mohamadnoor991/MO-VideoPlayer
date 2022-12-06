@@ -15,12 +15,12 @@
         <MediaView fx:id="myMediaView" smooth="false" VBox.vgrow="ALWAYS" />
         <HBox fx:id="timeHBox" spacing="10.0" style="-fx-background-color: SKYBLUE;">
             <children>
-                <Label fx:id="currentTimeLabel" text="Time">
+                <Label fx:id="currentTimeLabel" text="00">
                     <opaqueInsets>
                         <Insets right="10.0" />
                     </opaqueInsets>
                 </Label>
-                <Label fx:id="totalTime" text="Label" />
+                <Label fx:id="totalTime" text="00" />
                 <Slider fx:id="timeSlider" prefHeight="24.0" prefWidth="366.0" showTickMarks="true" style="-fx-background-color: CADETBLUE;" HBox.hgrow="ALWAYS">
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -46,7 +46,7 @@
                 <Button fx:id="openVideo" mnemonicParsing="false" onAction="#openV" text="Open Video" />
                 <Button fx:id="play" mnemonicParsing="false" onAction="#play" text="Play" />
                 <Button fx:id="puse" mnemonicParsing="false" onAction="#pause" text="Pause" />
-                <Button fx:id="stop" mnemonicParsing="false" onAction="#stop" text="Stop" />
+                <Button fx:id="stop" mnemonicParsing="false" onAction="#stop" text="Reset" />
                 <Button fx:id="mute" mnemonicParsing="false" onAction="#mute" text="Mute" />
                 <Button mnemonicParsing="false" onAction="#takeShoot" text="Photo" />
                 <Button fx:id="forWord" mnemonicParsing="false" onAction="#forWord" text="&gt;&gt;" />
